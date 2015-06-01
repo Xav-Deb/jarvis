@@ -19,7 +19,7 @@ session_token = '';
 
 resultCurl=$( mktemp )
 
-curl -S -d "login=freebox&passwd=xunufroot" http://mafreebox.freebox.fr/login.php -v > $resultCurl 2>&1
+curl -S -d "login=freebox&passwd=passwd" http://mafreebox.freebox.fr/login.php -v > $resultCurl 2>&1
 if grep -q "Set-Cookie:" $resultCurl; then
     echo "Login to Freebox succeeded!"
 else
@@ -30,8 +30,8 @@ fi
 
 csrfToken=`grep "X-FBX-CSRF-Token" $resultCurl | cut -f 3 -d ' ' | sed "s/\r//"  `
 fbxSid=`grep "FBXSID" $resultCurl | cut -f 3 -d ' ' | sed "s/FBXSID=//" | sed "s/;//" | sed "s/\r//" `
-curl -b  FBXSID=$fbxSid  --data-urlencode "csrf_token=${csrfToken}" -X POST -H "Content-Type: application/json" -d '{"action": "start", "media_type": "video", "media": "/home/vagrant/Vidéos/Alice-guitare.mp4", "password": "xunufroot"}' http://mafreebox.freebox.fr/api/v1/airmedia/receivers/Freebox%20Player/ > $resultCurl 2>&1
-#curl -s -b FBXSID=$fbxSid -D - -o /dev/null -e http://mafreebox.freebox.fr/settings.php?page=wifi_conf http://mafreebox.freebox.fr/wifi.cgi --data-urlencode "csrf_token=${csrfToken}" -d "channel=11&ht_mode=disabled&method=wifi.ap_params_set&config=Valider" -H "X-Requested-With: XMLHttpRequest" -H "Accept: application/json, text/javascript, */*" -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" > $resultCurl 2>&1
+curl -b  FBXSID=$fbxSid  --data-urlencode "csrf_token=${csrfToken}" -X POST -H "Content-Type: application/json" -d '{"action": "start", "media_type": "video", "media": "/home/vagrant/Vidéos/Alice-guitare.mp4", "password": "passwd"}' http://mafreebox.freebox.fr/api/v1/airmedia/receivers/Freebox%20Player/ > $resultCurl 2>&1
+
 if grep -q "HTTP/1.1 200 OK" $resultCurl; then
     echo "Playing Video on Freebox succeeded!"
 else
