@@ -3,9 +3,9 @@ import sys
 import gmail
 import weather
 import time
+import locale
 
 try:
-    import locale
     locale.setlocale(locale.LC_ALL,'fr_FR')
 except:
     locale.setlocale(locale.LC_ALL,'')
