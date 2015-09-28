@@ -212,7 +212,11 @@ def main():
     if not messages:
         return 'Vous n\'avez pas de nouveau messages.'
     else:
-      Retour = 'Vous avez %s nouveaux messages\n' % (len(messages))
+      nb = len(messages)
+      if nb == 1:
+        Retour = 'Vous avez 1 nouveau message\n'
+      else:
+        Retour = 'Vous avez %s nouveaux messages\n' % (len(messages))
       i = 0
       for message in messages:
         i = i + 1
