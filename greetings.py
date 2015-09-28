@@ -5,7 +5,7 @@ import weather
 import time
 import locale
 
-locale.setlocale(locale.LC_ALL,'')
+locale.setlocale(locale.LC_ALL,'fr_FR.UTF-8')
 
 lang = "fr"
 
