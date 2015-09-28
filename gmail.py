@@ -210,11 +210,16 @@ def main():
     messages = ListMessagesWithLabels(service, 'me', label_ids=['UNREAD','INBOX'])
     #print GetMetaMessage(service, 'me', '14dd933410f604f0')
     if not messages:
-        return 'No messages found.'
+        return 'Vous n\'avez pas de nouveau messages.'
     else:
-      Retour = 'Messages: %s\n' % (len(messages))
+      Retour = 'Vous avez %s nouveaux messages\n' % (len(messages))
+      i = 0
       for message in messages:
-        Retour = Retour + GetMetaMessage(service, 'me', message['id'])['payload']['headers'][0]['value'] + '\n'
+        i = i + 1
+        Expediteur = GetMetaMessage(service, 'me', message['id'])['payload']['headers'][0]['value']
+        Titre = GetMetaMessage(service, 'me', message['id'])['snippet']
+        Retour = Retour + str(i) + ' - ' + Expediteur + ' : ' + Titre + '\n'
+    #print Retour
     return Retour
 if __name__ == '__main__':
     main()
