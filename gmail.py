@@ -214,9 +214,9 @@ def main():
     else:
       nb = len(messages)
       if nb == 1:
-        Retour = 'Vous avez 1 nouveau message\n'
+        Retour = 'Vous avez 1 nouveau message \n'
       else:
-        Retour = 'Vous avez %s nouveaux messages\n' % (len(messages))
+        Retour = 'Vous avez %s nouveaux messages \n' % (len(messages))
       i = 0
       for message in messages:
         i = i + 1
